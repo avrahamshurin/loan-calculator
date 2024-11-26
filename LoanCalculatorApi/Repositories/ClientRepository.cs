@@ -7,7 +7,7 @@ namespace LoanCalculatorApi.Repositories;
 public class ClientRepository : IClientRepository
 {
     private const string FilePath = "Data/Clients.json";
-    private List<Client> _clients;
+    private readonly List<Client> _clients;
 
     public ClientRepository()
     {
@@ -16,7 +16,7 @@ public class ClientRepository : IClientRepository
     
     public Client? GetClientById(string clientId)
     {
-        throw new NotImplementedException();
+        return _clients.FirstOrDefault(client => client.Id == clientId);
     }
     
     private List<Client> LoadClients()
