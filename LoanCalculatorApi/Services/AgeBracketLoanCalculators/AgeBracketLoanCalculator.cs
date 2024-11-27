@@ -1,6 +1,8 @@
+using LoanCalculatorApi.Contracts;
+
 namespace LoanCalculatorApi.Services.AgeBracketLoanCalculators;
 
-public abstract class AgeBracketLoanCalculator
+public abstract class AgeBracketLoanCalculator : ILoanCalculationStrategy
 {
     private const int MinLoanPeriodInMonths = 12;
     protected const decimal PrimeInterest = 1.5m / 100;

@@ -6,7 +6,7 @@ public class Above35LoanCalculator : AgeBracketLoanCalculator
     {
         var rate = requestedLoanInNis switch
         {
-            <= 15000 => 1.5m / 100,
+            <= 15000 => 1.5m / 100 + PrimeInterest,
             > 15000 and <= 30000 => 3m / 100 + PrimeInterest,
             > 30000 => 1m / 100
         };

@@ -1,19 +1,18 @@
 using LoanCalculatorApi.Contracts;
-using LoanCalculatorApi.Services.AgeBracketLoanCalculators;
-
 namespace LoanCalculatorApi.Services;
 
 public class LoanCalculator : ILoanCalculator
 {
+    private readonly ILoanCalculationStrategyFactory _strategyFactory;
+
+    public LoanCalculator(ILoanCalculationStrategyFactory strategyFactory)
+    {
+        _strategyFactory = strategyFactory;
+    }
+
     public Task<decimal> Calculate(int age, int requestedLoanInNis, int periodInMonths)
     {
-        AgeBracketLoanCalculator loanCalculator = age switch
-        {
-            <= 20 => new Below20LoanCalculator(),
-            > 20 and <= 35 => new Between20And35LoanCalculator(),
-            > 35 => new Above35LoanCalculator()
-        };
-
-        return Task.FromResult(loanCalculator.Calculate(requestedLoanInNis, periodInMonths));
+        var strategy = _strategyFactory.CreateStrategy(age);
+        return Task.FromResult(strategy.Calculate(requestedLoanInNis, periodInMonths));
     }
 }
