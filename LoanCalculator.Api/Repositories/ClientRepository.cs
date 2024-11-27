@@ -1,8 +1,8 @@
 using System.Text.Json;
-using LoanCalculatorApi.Contracts.Repositories;
-using LoanCalculatorApi.Models;
+using LoanCalculator.Api.Contracts.Repositories;
+using LoanCalculator.Api.Models;
 
-namespace LoanCalculatorApi.Repositories;
+namespace LoanCalculator.Api.Repositories;
 
 public class ClientRepository : IClientRepository
 {

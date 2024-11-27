@@ -1,4 +1,4 @@
-namespace LoanCalculatorApi.Services.AgeBracketLoanCalculators;
+namespace LoanCalculator.Api.Services.AgeBracketLoanCalculators;
 
 public class Below20LoanCalculator : AgeBracketLoanCalculator
 {

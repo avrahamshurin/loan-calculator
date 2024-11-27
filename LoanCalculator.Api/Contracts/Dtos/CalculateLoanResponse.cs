@@ -1,4 +1,4 @@
-﻿namespace LoanCalculatorApi.Contracts.Dtos
+﻿namespace LoanCalculator.Api.Contracts.Dtos
 {
     public class CalculateLoanResponse
     {

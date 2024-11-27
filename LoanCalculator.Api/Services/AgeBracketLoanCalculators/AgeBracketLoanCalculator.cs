@@ -1,6 +1,6 @@
-using LoanCalculatorApi.Contracts;
+using LoanCalculator.Api.Contracts;
 
-namespace LoanCalculatorApi.Services.AgeBracketLoanCalculators;
+namespace LoanCalculator.Api.Services.AgeBracketLoanCalculators;
 
 public abstract class AgeBracketLoanCalculator : ILoanCalculationStrategy
 {

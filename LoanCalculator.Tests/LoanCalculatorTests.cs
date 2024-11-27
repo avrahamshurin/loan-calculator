@@ -1,16 +1,17 @@
-using LoanCalculatorApi.Contracts;
-using LoanCalculatorApi.Services.AgeBracketLoanCalculators;
+using LoanCalculator.Api.Contracts;
+using LoanCalculator.Api.Services;
+using LoanCalculator.Api.Services.AgeBracketLoanCalculators;
 
 namespace LoanCalculator.Tests;
 
 public class LoanCalculatorTests
 {
-    private readonly ILoanCalculator _calculator;
+    private readonly ILoanCalculatorService _calculatorService;
 
     public LoanCalculatorTests()
     {
         var strategyFactory = new LoanCalculationStrategyFactory();
-        _calculator = new LoanCalculatorApi.Services.LoanCalculator(strategyFactory);
+        _calculatorService = new LoanCalculatorService(strategyFactory);
     }
 
     [Theory]
@@ -18,7 +19,7 @@ public class LoanCalculatorTests
     [InlineData(19, 10000, 12, 10350)]
     public async Task Calculate_Below20(int age, int amount, int months, decimal expectedTotal)
     {
-        var result = await _calculator.Calculate(age, amount, months);
+        var result = await _calculatorService.Calculate(age, amount, months);
         Assert.Equal(expectedTotal, result);
     }
 
@@ -29,7 +30,7 @@ public class LoanCalculatorTests
     [InlineData(25, 10000, 13, 10315)]
     public async Task Calculate_Between20And35(int age, int amount, int months, decimal expectedTotal)
     {
-        var result = await _calculator.Calculate(age, amount, months);
+        var result = await _calculatorService.Calculate(age, amount, months);
         Assert.Equal(expectedTotal, result);
     }
 
@@ -40,7 +41,7 @@ public class LoanCalculatorTests
     [InlineData(40, 20000, 13, 20930)]
     public async Task Calculate_Above35(int age, int amount, int months, decimal expectedTotal)
     {
-        var result = await _calculator.Calculate(age, amount, months);
+        var result = await _calculatorService.Calculate(age, amount, months);
         Assert.Equal(expectedTotal, result);
     }
 
@@ -50,6 +51,6 @@ public class LoanCalculatorTests
     [InlineData(40, 10000, -1)]
     public async Task Calculate_ThrowsException_WhenPeriodBelowMinimum(int age, int amount, int months)
     {
-        await Assert.ThrowsAsync<Exception>(() => _calculator.Calculate(age, amount, months));
+        await Assert.ThrowsAsync<Exception>(() => _calculatorService.Calculate(age, amount, months));
     }
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculatorApi", "LoanCalculatorApi\LoanCalculatorApi.csproj", "{BDFA8B03-F6A3-4DB3-A457-EEEA91287B18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Api", "LoanCalculator.Api\LoanCalculator.Api.csproj", "{BDFA8B03-F6A3-4DB3-A457-EEEA91287B18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalculator.Tests", "LoanCalculator.Tests\LoanCalculator.Tests.csproj", "{CCBD01CE-30F8-4FA7-970E-13FAC3B10105}"
 EndProject

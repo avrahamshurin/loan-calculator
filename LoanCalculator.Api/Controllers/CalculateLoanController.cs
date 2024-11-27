@@ -1,23 +1,23 @@
-﻿using LoanCalculatorApi.Contracts;
-using LoanCalculatorApi.Contracts.Dtos;
-using LoanCalculatorApi.Contracts.Repositories;
+﻿using LoanCalculator.Api.Contracts;
+using LoanCalculator.Api.Contracts.Dtos;
+using LoanCalculator.Api.Contracts.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LoanCalculatorApi.Controllers
+namespace LoanCalculator.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class CalculateLoanController : ControllerBase
     {
         private readonly IClientRepository _clientRepository;
-        private readonly ILoanCalculator _loanCalculator;
+        private readonly ILoanCalculatorService _loanCalculatorService;
 
         public CalculateLoanController(
             IClientRepository clientRepository, 
-            ILoanCalculator loanCalculator)
+            ILoanCalculatorService loanCalculatorService)
         {
             _clientRepository = clientRepository;
-            _loanCalculator = loanCalculator;
+            _loanCalculatorService = loanCalculatorService;
         }
 
         [HttpPost(Name = "CalculateLoan")]
@@ -33,7 +33,7 @@ namespace LoanCalculatorApi.Controllers
 
             try
             {
-                var totalAmount = await _loanCalculator.Calculate(client.Age, request.RequestedLoanInNis, request.PeriodInMonths);
+                var totalAmount = await _loanCalculatorService.Calculate(client.Age, request.RequestedLoanInNis, request.PeriodInMonths);
                 return Ok(new CalculateLoanResponse()
                 {
                     ClientId = clientId,

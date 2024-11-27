@@ -1,6 +1,6 @@
-namespace LoanCalculatorApi.Contracts;
+namespace LoanCalculator.Api.Contracts;
 
-public interface ILoanCalculator
+public interface ILoanCalculatorService
 {
     Task<decimal> Calculate(int age, int requestedLoanInNis, int periodInMonths);
 }

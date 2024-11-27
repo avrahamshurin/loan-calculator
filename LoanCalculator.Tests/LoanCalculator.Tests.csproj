@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoanCalculatorApi\LoanCalculatorApi.csproj" />
+    <ProjectReference Include="..\LoanCalculator.Api\LoanCalculator.Api.csproj" />
   </ItemGroup>
 
 </Project>

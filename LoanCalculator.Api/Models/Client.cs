@@ -1,4 +1,4 @@
-namespace LoanCalculatorApi.Models;
+namespace LoanCalculator.Api.Models;
 
 public class Client
 {

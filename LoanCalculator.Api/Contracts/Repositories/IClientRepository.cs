@@ -1,6 +1,6 @@
-using LoanCalculatorApi.Models;
+using LoanCalculator.Api.Models;
 
-namespace LoanCalculatorApi.Contracts.Repositories;
+namespace LoanCalculator.Api.Contracts.Repositories;
 
 public interface IClientRepository
 {

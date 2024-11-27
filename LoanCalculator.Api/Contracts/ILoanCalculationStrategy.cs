@@ -1,4 +1,4 @@
-namespace LoanCalculatorApi.Contracts;
+namespace LoanCalculator.Api.Contracts;
 
 public interface ILoanCalculationStrategy
 {    

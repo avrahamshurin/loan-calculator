@@ -1,11 +1,12 @@
-using LoanCalculatorApi.Contracts;
-namespace LoanCalculatorApi.Services;
+using LoanCalculator.Api.Contracts;
 
-public class LoanCalculator : ILoanCalculator
+namespace LoanCalculator.Api.Services;
+
+public class LoanCalculatorService : ILoanCalculatorService
 {
     private readonly ILoanCalculationStrategyFactory _strategyFactory;
 
-    public LoanCalculator(ILoanCalculationStrategyFactory strategyFactory)
+    public LoanCalculatorService(ILoanCalculationStrategyFactory strategyFactory)
     {
         _strategyFactory = strategyFactory;
     }
