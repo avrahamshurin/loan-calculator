@@ -5,7 +5,7 @@ namespace LoanCalculatorApi.Services;
 
 public class LoanCalculator : ILoanCalculator
 {
-    public async Task<decimal> Calculate(int age, int requestedLoanInNis, int periodInMonths)
+    public Task<decimal> Calculate(int age, int requestedLoanInNis, int periodInMonths)
     {
         AgeBracketLoanCalculator loanCalculator = age switch
         {
@@ -14,6 +14,6 @@ public class LoanCalculator : ILoanCalculator
             > 35 => new Above35LoanCalculator()
         };
 
-        return await Task.Run(() => loanCalculator.Calculate(requestedLoanInNis, periodInMonths));
+        return Task.FromResult(loanCalculator.Calculate(requestedLoanInNis, periodInMonths));
     }
 }
