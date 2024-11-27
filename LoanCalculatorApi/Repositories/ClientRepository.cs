@@ -7,19 +7,14 @@ namespace LoanCalculatorApi.Repositories;
 public class ClientRepository : IClientRepository
 {
     private const string FilePath = "Data/Clients.json";
-    private readonly List<Client> _clients;
 
-    public ClientRepository()
+    public async Task<Client?> GetClientById(int clientId)
     {
-        _clients = LoadClients();
+        var clients = await LoadClients();
+        return clients.FirstOrDefault(client => client.Id == clientId);
     }
     
-    public Client? GetClientById(string clientId)
-    {
-        return _clients.FirstOrDefault(client => client.Id == clientId);
-    }
-    
-    private List<Client> LoadClients()
+    private async Task<List<Client>> LoadClients()
     {
         var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FilePath);
 
@@ -28,7 +23,7 @@ public class ClientRepository : IClientRepository
             throw new FileNotFoundException("Client data file not found.");
         }
 
-        var jsonData = File.ReadAllText(filePath);
+        var jsonData = await File.ReadAllTextAsync(filePath);
         return JsonSerializer.Deserialize<List<Client>>(jsonData) ?? new List<Client>();
     }
 

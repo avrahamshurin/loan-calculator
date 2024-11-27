@@ -2,7 +2,7 @@
 {
     public class CalculateLoanResponse
     {
-        public string ClientId { get; set; } = string.Empty;
+        public int ClientId { get; set; }
         public decimal TotalAmount { get; set; }
     }
 }

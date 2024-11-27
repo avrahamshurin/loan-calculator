@@ -2,8 +2,8 @@
 {
     public class CalculateLoanRequest
     {
-        public string ClientId { get; set; } = string.Empty; // Client ID
-        public int AmountInNIS { get; set; } // Initial amount in NIS
-        public int PeriodInMonths { get; set; } // Period in months
+        public int ClientId { get; set; }
+        public int RequestedLoanInNis { get; set; }
+        public int PeriodInMonths { get; set; }
     }
 }

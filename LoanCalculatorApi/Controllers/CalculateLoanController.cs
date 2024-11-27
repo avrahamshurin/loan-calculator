@@ -21,22 +21,29 @@ namespace LoanCalculatorApi.Controllers
         }
 
         [HttpPost(Name = "CalculateLoan")]
-        public ActionResult<CalculateLoanResponse> Get([FromBody] CalculateLoanRequest request)
+        public async Task<ActionResult<CalculateLoanResponse>> CalculateLoan([FromBody] CalculateLoanRequest request)
         {
             var clientId = request.ClientId;
             
-            var client = _clientRepository.GetClientById(clientId);
+            var client = await _clientRepository.GetClientById(clientId);
             if (client == null)
             {
-                return NotFound($"Client with id {clientId} not found");
+                return NotFound(new {message = $"Client with id {clientId} not found"});
             }
 
-            var totalAmount = _loanCalculator.Calculate(client.Age, request.AmountInNIS, request.PeriodInMonths);
-            return new CalculateLoanResponse()
+            try
             {
-                ClientId = request.ClientId,
-                TotalAmount = totalAmount,
-            };
+                var totalAmount = await _loanCalculator.Calculate(client.Age, request.RequestedLoanInNis, request.PeriodInMonths);
+                return Ok(new CalculateLoanResponse()
+                {
+                    ClientId = clientId,
+                    TotalAmount = totalAmount,
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { message = "An error occurred while processing the loan calculation.", details = e.Message });
+            }
         }
     }
 }

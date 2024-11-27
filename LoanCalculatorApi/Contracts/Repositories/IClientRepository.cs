@@ -4,5 +4,5 @@ namespace LoanCalculatorApi.Contracts.Repositories;
 
 public interface IClientRepository
 {
-    Client? GetClientById(string clientId);
+    Task<Client?> GetClientById(int clientId);
 }
